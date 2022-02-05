@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %} {{todo.title}} {% endblock %}
+
+{% block content %}
+<style>
+    .tablee{
+        margin-top: 90px;
+    }
+</style>
+<div class="container">
+    <div class="tablee">
+        <h1 class="text-center mt-5">Список всех задач:</h1>
+        <table class="table table-dark table-striped mt-5">
+            <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Заголовок</th>
+                  <th scope="col">Описание</th>
+                  <th scope="col">Дата</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+                  {% if todos.count > 0  %}
+                  {% for i in todos %}
+                <tr>
+                  <th scope="row">{{i.id}}</th>
+                  <td>{{i.title}}</td>
+                  <td>{{i.discription}}</td>
+                  <td>{{i.sent_at}}</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+              </tbody>
+          </table>
+    </div>
+</div>
+{% endblock %}

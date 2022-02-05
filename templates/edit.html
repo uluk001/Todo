@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} {{todo.title}} {% endblock %}
+
+{% block content %}
+      <div class="container">
+      <h1 class="text-center mt-5">To Do</h1>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" >Заголовок</label>
+            <input type="text" value="{{todo.title}}" class="form-control" id="exampleFormControlInput1" required placeholder="Title" name="title">
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label" >Описание</label>
+            <input type="text" value="{{todo.discription}}" class="form-control" id="exampleFormControlInput1" required placeholder="Описание" name="discription">
+          </div>
+        <button type="submit" class="btn btn-success">Сохранить</button>
+        <!-- <a type="sumbit" class="btn btn-danger" onclick="history.go(-1)">Exit</a> -->
+        <button type="submit" href="{% url 'main' %}" class="btn btn-danger">Exit</button>
+      </form>
+    </div>
+{% endblock %}

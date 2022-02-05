@@ -1,0 +1,32 @@
+/* body{
+    background-color: aliceblue;
+} */
+
+.first-div{
+    background-color: rgb(0, 0, 0);
+    color: rgb(155, 155, 155);
+    padding-left: 250px;
+}
+h4{
+    background-color: grey;
+}
+/* button{from django.http import HttpResponse
+from django.shortcuts import render
+
+# Create your views here.
+# def main(request):
+#     return HttpResponse("Main page")
+
+def main(request):
+    return render(request,'index.html')
+    color:blue;
+} */
+.update{
+    margin-left: 520px;
+    background-color: blue;
+    color: white;
+
+}
+h1{
+    margin-left: 250px;
+}
