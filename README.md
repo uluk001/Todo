@@ -50,6 +50,21 @@ Now your project is available at http://127.0.0.1:8000/
 
 ## Screenshots
 
+Main page
+
+<img width="1492" alt="image" src="https://github.com/uluk001/Todo/assets/96724618/99611b12-d4e8-407b-a468-7e737c0ffdcb">
+
+
+List of todo page
+
+<img width="1395" alt="image" src="https://github.com/uluk001/Todo/assets/96724618/cc3ec84b-219a-4295-ada3-7d9b9e4ed176">
+
+
+Edit page
+
+<img width="1366" alt="image" src="https://github.com/uluk001/Todo/assets/96724618/4a676002-cb65-4e5f-9d60-349f4bc55beb">
+
+
 
 ## Contribution
 <br>
