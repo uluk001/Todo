@@ -19,9 +19,9 @@ from main.views import main, create, delete, test, edit, tasks
 urlpatterns = [
     path("", main,name='main'),
     path("create/", create, name='create'),
-    path('test/<int:id>', test, name = 'test'),
-    path('delete/<int:id>', delete, name='delete'),
-    path('edit/<int:id>', edit, name='edit'),
+    path('test/<int:pk>', test, name = 'test'),
+    path('delete/<int:pk>', delete, name='delete'),
+    path('edit/<int:pk>', edit, name='edit'),
     path('tasks/', tasks, name="tasks")
 ]
 

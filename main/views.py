@@ -1,83 +1,47 @@
-from http.client import TOO_MANY_REQUESTS
-from operator import index
-from urllib import request
-from django.shortcuts import render
-from main.models import ToDo
-# Create your views here.
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
-# def main(request):
-#     return HttpResponse("Main page")
-#Получение данных из базы данных
+from .services import (
+    get_todo_list,
+    create_todo,
+    delete_todo,
+    get_todo_via_pk,
+    edit_todo,
+)
+
 def main(request):
-    try:
-        todos = ToDo.objects.all()
-        return render(request,'index.html', 
-        {'todos':todos})
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
+    queryset = get_todo_list()
+    return render(request,'index.html', {'queryset':queryset})
 
-#Создание данных в БД
 
 def create(request):
-    try:
-        if request.method == 'POST':
-            todo = ToDo()
-            todo.title = request.POST.get('title')
-            todo.discription = request.POST.get('discription')
-            todo.save()
-            return HttpResponseRedirect('/')
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        create_todo(title, description)
+    return HttpResponseRedirect('/')
+
 
 def test(request, id):
-    todos2 = ToDo.objects.all()
+    todos2 = get_todo_list()
     return render(request, 'index.html',{'todos2':todos2, 'hello':'hello', 'id':id})
 
 
-def delete(request, id):
-    try:
-        todo =ToDo.objects.get(id=id)
-        todo.delete()
+def delete(request, pk):
+    delete_todo(pk)
+    return HttpResponseRedirect('/')
+
+
+def edit(request, pk):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        todo = edit_todo(title, description, pk)
         return HttpResponseRedirect('/')
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
-
-
-def edit(request, id):
-    try:
-        todo =ToDo.objects.get(id=id)
-        if request.method == 'POST':
-            todo.title = request.POST.get('title')
-            todo.discription = request.POST.get('discription')
-            todo.save()
-            return HttpResponseRedirect('/')
-        return render (request, 'edit.html', {'todo':todo})
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
-
-def tasks(request):
-    try:
-        return render (request, 'tasks.html')
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
-
+    todo = get_todo_via_pk(pk)
+    return render(request, 'edit.html', {'todo': todo})
 
 
 def tasks(request):
-    try:
-        todos2 = ToDo.objects.all()
-        return render(request, 'tasks.html',{'todos2':todos2})
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
-
-
-def tasks(request):
-    try:
-        todos = ToDo.objects.all()
-        return render(request,'tasks.html', 
-        {'todos':todos})
-    except ToDo.DoesNotExist:
-        return render(request, 'error.html')
+    queryset = get_todo_list()
+    return render(request, 'tasks.html',{'queryset':queryset})

@@ -21,13 +21,13 @@
                 </tr>
               </thead>
               <tbody>
-                  {% if todos.count > 0  %}
-                  {% for i in todos %}
+                  {% if queryset.count > 0  %}
+                  {% for i in queryset %}
                 <tr>
                   <th scope="row">{{i.id}}</th>
                   <td>{{i.title}}</td>
-                  <td>{{i.discription}}</td>
-                  <td>{{i.sent_at}}</td>
+                  <td>{{i.description}}</td>
+                  <td>{{i.created_at}}</td>
                 </tr>
                 {% endfor %}
                 {% endif %}

@@ -4,7 +4,7 @@ from main.models import ToDo
 
 
 class Todo(admin.ModelAdmin):
-    list_display = ("title", "discription", "sent_at")
+    list_display = ("title", "description", "created_at")
 
 
 
