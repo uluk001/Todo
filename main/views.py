@@ -7,6 +7,7 @@ from .services import (
     delete_todo,
     get_todo_via_pk,
     edit_todo,
+    is_done,
 )
 
 def main(request):
@@ -45,3 +46,8 @@ def edit(request, pk):
 def tasks(request):
     queryset = get_todo_list()
     return render(request, 'tasks.html',{'queryset':queryset})
+
+
+def is_done_view(request, pk):
+    is_done(pk=pk)
+    return HttpResponseRedirect('/')
